@@ -45,6 +45,7 @@ a { color: var(--teal); text-underline-offset: 3px; }
 a:hover { color: var(--terra); }
 :focus-visible { outline: 3px solid var(--gold-dk); outline-offset: 3px; border-radius: 4px; }
 sup { font-size: max(.7em, 9px); line-height: 0; vertical-align: super; }
+h1 sup, h2 sup { font-size: .42em; }
 h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 700; line-height: 1.08; letter-spacing: -.01em; }
 p { margin: 0 0 1em; }
 .sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -510,7 +511,9 @@ html.motion .price.in .price__strike { transform: scaleX(1); }
 .socials a:hover { background: rgba(207, 150, 101, .12); text-decoration: none; }
 .footer__legal { padding-top: 26px; font-size: 13px; color: rgba(246, 235, 221, .55); }
 .footer__legal a { text-decoration: underline; }
-@media (min-width: 900px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1.1fr; gap: 40px; } }
+@media (min-width: 900px) { .footer__grid { grid-template-columns: 1.25fr 1.3fr 1fr 1fr; gap: 40px; } }
+.footer__mail { white-space: nowrap; }
+@media (min-width: 900px) and (max-width: 1180px) { .footer__mail { white-space: normal; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

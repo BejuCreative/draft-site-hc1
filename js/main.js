@@ -345,7 +345,11 @@
         form.classList.add('is-sent');
         msg.classList.add('ok');
         msg.textContent = MSG[kind] || 'Thank you.';
-        if (kind === 'intro') unlockFull();
+        if (kind === 'intro') {
+          var meta = $('.player__meta');
+          if (meta) meta.textContent = 'Preview draft: the email form is not connected yet, so your email was not saved.';
+          unlockFull();
+        }
       };
       if (endpoint) {
         fetch(endpoint, { method: 'POST', body: new FormData(form) }).then(success, function () {
@@ -357,7 +361,11 @@
         form.classList.add('is-sent');
         msg.classList.remove('ok');
         msg.textContent = kind === 'intro' ? 'Preview draft: this form is not connected yet, so your email was not saved. Here is the full introduction.' : 'Preview draft: this form is not connected yet, so nothing was sent. Please email info@psychologicalhealingcenter.com.';
-        if (kind === 'intro') unlockFull();
+        if (kind === 'intro') {
+          var meta = $('.player__meta');
+          if (meta) meta.textContent = 'Preview draft: the email form is not connected yet, so your email was not saved.';
+          unlockFull();
+        }
       }
     });
   });
