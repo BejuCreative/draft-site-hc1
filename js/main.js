@@ -377,8 +377,9 @@
     if (p && p.catch) p.catch(function () {});
   }
   if (video) {
+    video.controls = false;
     bigPlay.addEventListener('click', playTeaser);
-    video.addEventListener('play', function () { player.classList.add('is-playing'); });
+    video.addEventListener('play', function () { player.classList.add('is-playing'); video.controls = true; });
     video.addEventListener('ended', function () {
       gate.hidden = false;
       frame.classList.add('has-gate');

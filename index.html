@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cinzel:wght@500;600&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400;1,600&display=swap">
 <link rel="preload" as="image" href="img/emblem-900.webp" type="image/webp">
-<link rel="preload" as="image" href="img/cover-900.webp" type="image/webp">
+<link rel="preload" as="image" href="img/cover-900.webp" imagesrcset="img/cover-600.webp 600w, img/cover-900.webp 900w" imagesizes="(min-width: 900px) 380px, 60vw" type="image/webp">
 <link rel="stylesheet" href="css/style.css">
 <script>
 /* Intro gate: runs before paint. Plays once per session, never with reduced motion. */
@@ -207,7 +207,7 @@
         <video id="teaser" class="player__video" preload="none" playsinline controls poster="img/poster-1280.webp" width="1280" height="720">
           <source src="video/teaser-68s.mp4" type="video/mp4">
         </video>
-        <button class="player__big" id="teaserPlay" type="button" aria-label="Play the free preview"><span class="play-ico play-ico--lg" aria-hidden="true"></span><span class="player__big-label">Free preview · about 1 minute</span></button>
+        <button class="player__big" id="teaserPlay" type="button" aria-label="Play the free preview"><span class="player__disc" aria-hidden="true"><span class="play-ico play-ico--lg"></span></span><span class="player__big-label">Free preview · about 1 minute</span></button>
         <div class="gate" id="gate" hidden>
           <div class="gate__card">
             <p class="eyebrow">More to share…</p>
