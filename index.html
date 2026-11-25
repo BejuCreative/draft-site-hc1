@@ -27,8 +27,8 @@
   try { seen = sessionStorage.getItem('hcw-intro'); } catch (e) {}
   if (!reduce && !seen) {
     d.className += ' intro-on';
-    /* Hard failsafe: content is never blocked longer than ~3.5 s. */
-    window.__introFS = setTimeout(function () { d.classList.remove('intro-on'); d.classList.add('intro-done'); }, 3600);
+    /* Hard failsafe: content is never blocked longer than 3 s. */
+    window.__introFS = setTimeout(function () { d.classList.remove('intro-on'); d.classList.add('intro-done'); }, 3000);
   }
 })(document.documentElement);
 </script>
@@ -70,7 +70,7 @@
       </svg>
       <span class="intro__dot"></span>
     </div>
-    <p class="intro__eyebrow">Decode Your Past … Recode Your Future<sup>®</sup></p>
+    <p class="intro__eyebrow"><span class="nw">Decode Your Past …</span> <span class="nw">Recode Your Future<sup>®</sup></span></p>
     <p class="intro__title">Healing Childhood Wounds</p>
   </div>
   <button class="intro__skip" id="introSkip" type="button">Skip intro <span aria-hidden="true">→</span></button>
@@ -109,9 +109,9 @@
   </svg>
   <div class="wrap hero__grid">
     <div class="hero__copy">
-      <p class="eyebrow h-in">Decode Your Past … Recode Your Future<sup>®</sup></p>
+      <p class="eyebrow h-in"><span class="nw">Decode Your Past …</span> <span class="nw">Recode Your Future<sup>®</sup></span></p>
       <h1 class="hero__title h-in" id="hero-title">Healing <span>Childhood Wounds</span></h1>
-      <p class="hero__sub h-in">The Be The Cause<sup>®</sup> Mind Map System <span class="dot-sep" aria-hidden="true">·</span> Third Edition</p>
+      <p class="hero__sub h-in">The Be The Cause<sup>®</sup> Mind Map System <span class="dot-sep" aria-hidden="true">·</span> <span class="nw hero__ed">Third Edition</span></p>
       <p class="hero__by h-in">Written &amp; illustrated by <strong>Dr. Judy Rosenberg</strong>, Licensed Clinical Psychologist</p>
       <p class="badge-soon h-in"><span class="badge-soon__pulse" aria-hidden="true"></span>Coming soon</p>
       <div class="hero__ctas h-in">
@@ -166,6 +166,7 @@
       </div>
       <blockquote class="hostage rv">
         <p><strong>Childhood is a hostage situation.</strong> Because we are not in control of our first few years of life and how we were parented, we need to recognize that Part One of our lives is not our fault. That being said, it is our responsibility to heal.</p>
+        <cite>— Dr. Judy Rosenberg</cite>
       </blockquote>
     </div>
     <figure class="ii" aria-labelledby="ii-cap">
@@ -199,8 +200,8 @@
     <div class="video__copy">
       <p class="eyebrow eyebrow--light rv">Free video</p>
       <h2 class="h2 h2--light rv" id="v-title">Start with the first minute.</h2>
-      <p class="lead lead--light rv">A guided journey through the Be the Cause Mind Map System<sup>®</sup> to help you heal the original wounds, rewrite limiting beliefs, and create a new future.</p>
-      <p class="video__hint rv">Watch the first minute. Then leave your email and the complete introduction unlocks instantly — free.</p>
+      <p class="lead lead--light rv">The introduction to her on-demand video program, which walks you through each panel of the Mind Map — from The Wound to Unity.</p>
+      <p class="video__hint rv">Watch the first minute. Then leave your email and the complete introduction unlocks instantly.</p>
     </div>
     <div class="player rv" id="player">
       <div class="player__frame">
@@ -224,7 +225,7 @@
         </div>
         <div class="full" id="fullIntro" hidden></div>
       </div>
-      <p class="player__meta">Full introduction · about 11 minutes · free</p>
+      <p class="player__meta">Full introduction · about 11 minutes</p>
     </div>
   </div>
 </section>
@@ -232,10 +233,10 @@
 <!-- ============ THE MIND MAP ============ -->
 <section class="mm" id="mind-map" aria-labelledby="mm-title">
   <div class="mm__head wrap">
-    <p class="eyebrow eyebrow--gold rv">Decode Your Past … Recode Your Future<sup>®</sup></p>
+    <p class="eyebrow eyebrow--gold rv"><span class="nw">Decode Your Past …</span> <span class="nw">Recode Your Future<sup>®</sup></span></p>
     <h2 class="h2 h2--light rv" id="mm-title">The Be The Cause<sup>®</sup> Mind Map</h2>
     <p class="lead lead--light rv">Your life story follows a map. Nine stations. One journey from wound to unity. Once you can see it, you can stop reacting to the past and start causing a better future.</p>
-    <p class="mm__note rv"><span class="hand">“I made that. I created that.”</span> <span class="hand-sig">— Dr. Judy, on the Mind Map she painted</span></p>
+    <p class="mm__note rv"><span class="hand">“The mind map — I made that. I created that.”</span> <span class="hand-sig">— Dr. Judy, on the Mind Map she painted</span></p>
   </div>
   <div class="mm__pin" id="mmPin">
     <div class="mm__inner wrap">
@@ -284,7 +285,7 @@
           <div class="mm-card__text"><p class="mm-card__phase">Recoding</p><p class="mm-card__num">09</p><h3>Unity</h3><p>When you break the multigenerational encoding, you can Be The Cause<sup>®</sup> of better outcomes for your life — and pay it forward to the next generation.</p></div>
         </article>
       </div>
-      <div class="mm__dots" id="mmDots" role="tablist" aria-label="Mind Map panels"></div>
+      <div class="mm__dots" id="mmDots" role="group" aria-label="Mind Map panels"></div>
     </div>
   </div>
   <div class="mm__foot wrap rv">
@@ -299,7 +300,7 @@
       <svg class="branches" viewBox="0 0 420 420">
         <circle cx="210" cy="210" r="58" class="br-core"/>
         <text x="210" y="204" text-anchor="middle" class="br-core-t">YOU</text>
-        <text x="210" y="226" text-anchor="middle" class="br-core-s">Part One</text>
+        <text x="210" y="226" text-anchor="middle" class="br-core-s">Start here</text>
         <path class="br" d="M210 152 C 210 110, 200 80, 196 44"/>
         <path class="br" d="M262 186 C 300 160, 330 140, 372 120"/>
         <path class="br" d="M258 246 C 300 270, 330 300, 362 336"/>
@@ -346,9 +347,9 @@
       <p class="eyebrow rv">The new book · Third Edition</p>
       <h2 class="h2 rv" id="book-title">Healing Childhood Wounds</h2>
       <p class="bookinfo__subtitle rv">The Be The Cause<sup>®</sup> Mind Map System</p>
-      <p class="lead rv">Written and illustrated by Dr. Judy Rosenberg. The cover art is hers — the big I and the little i at its heart.</p>
+      <p class="lead rv">Written and illustrated by Dr. Judy Rosenberg. She designed the cover — the big I and the little i at its heart.</p>
       <blockquote class="pull rv">
-        <p>“I created it, and then my book publisher put the [Vitruvian] man on the left, because that’s like the father protecting the mother and the baby.”</p>
+        <p>“I created it, and then my book publisher put the man on the left, because that’s like the father protecting the mother and the baby.”</p>
         <cite>— Dr. Judy Rosenberg</cite>
       </blockquote>
       <div class="waitlist rv">
@@ -461,7 +462,7 @@
       <div class="field"><label for="rq-email">Email</label><input id="rq-email" name="email" type="email" autocomplete="email"></div>
       <div class="field"><label for="rq-note">What would you like help with? <span class="opt">(optional)</span></label><textarea id="rq-note" name="note" rows="3"></textarea></div>
       <button class="btn btn--terra btn--wide" type="submit">Request a private session</button>
-      <p class="form__fine">California residents only. No calendar, no automated booking — Dr. Judy reaches out herself.</p>
+      <p class="form__fine">Dr. Judy reaches out to you personally.</p>
       <p class="form__msg" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -508,7 +509,7 @@
     </div>
     <div class="footer__col">
       <p class="footer__h">Contact</p>
-      <p><a href="mailto:info@psychologicalhealingcenter.com">info@psychologicalhealingcenter.com</a></p>
+      <p><a href="mailto:info@psychologicalhealingcenter.com">info@<wbr>psychologicalhealingcenter.com</a></p>
       <p class="js-phone" hidden></p>
       <p><a href="#request">Request a private session</a></p>
     </div>

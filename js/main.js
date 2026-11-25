@@ -102,13 +102,13 @@
       gsap.to(stage, { opacity: 0, duration: 0.3, delay: 0.85, onComplete: function () { end(false); } });
     }
 
-    /* Start once the emblem is ready (or after 500 ms). Fit the whole play inside the 3.6 s failsafe. */
+    /* Start once the emblem is ready (or after 500 ms). Fit the whole play inside the 3 s failsafe. */
     var ready = emblem.decode ? emblem.decode().catch(function () {}) : Promise.resolve();
     var timeout = new Promise(function (r) { setTimeout(r, 500); });
     Promise.race([ready, timeout]).then(function () {
       if (done) return;
-      var left = 3350 - performance.now();
-      if (left < 1300) { end(true); return; }
+      var left = 2800 - performance.now();
+      if (left < 1100) { end(true); return; }
       var need = 3150; /* timeline + flip ≈ 3.15 s */
       if (left < need) tl.timeScale(need / left);
       tl.play();
@@ -140,13 +140,12 @@
     navLinks.forEach(function (l) { map[l.getAttribute('href').slice(1)] = l; });
     var navIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting && map[en.target.id]) {
-          navLinks.forEach(function (l) { l.classList.remove('is-current'); });
-          map[en.target.id].classList.add('is-current');
-        }
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function (l) { l.classList.remove('is-current'); });
+        if (map[en.target.id]) map[en.target.id].classList.add('is-current');
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) navIO.observe(el); });
+    $$('main > section, main > div').forEach(function (el) { navIO.observe(el); });
   }
 
   /* ---------- reveals ---------- */
@@ -237,8 +236,6 @@
   cards.forEach(function (c, i) {
     var b = document.createElement('button');
     b.type = 'button';
-    b.setAttribute('role', 'tab');
-    b.setAttribute('aria-selected', 'false');
     b.setAttribute('aria-label', 'Panel ' + (i + 1) + ': ' + $('h3', c).textContent);
     b.textContent = i + 1;
     b.addEventListener('click', function () { goTo(i); });
@@ -253,11 +250,10 @@
     cards.forEach(function (c, k) {
       c.classList.toggle('is-active', k === i);
       c.classList.toggle('is-leaving', k === prev);
-      c.setAttribute('aria-hidden', k === i ? 'false' : 'true');
     });
     clearTimeout(leaveTimer);
     leaveTimer = setTimeout(function () { cards.forEach(function (c) { c.classList.remove('is-leaving'); }); }, 1000);
-    dots.forEach(function (d, k) { d.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    dots.forEach(function (d, k) { if (k === i) d.setAttribute('aria-current', 'step'); else d.removeAttribute('aria-current'); });
     var ph = i < 3 ? 0 : i < 6 ? 1 : 2;
     phases.forEach(function (p, k) { p.classList.toggle('is-on', k <= ph); });
   }
@@ -301,7 +297,7 @@
       });
       return function () {
         mm.classList.remove('is-pinned');
-        cards.forEach(function (c) { c.classList.remove('is-active', 'is-leaving'); c.removeAttribute('aria-hidden'); });
+        cards.forEach(function (c) { c.classList.remove('is-active', 'is-leaving'); });
         current = -1;
         pinST = null;
       };
@@ -357,7 +353,11 @@
           msg.textContent = 'Something went wrong. Please email info@psychologicalhealingcenter.com.';
         });
       } else {
-        success();
+        /* Draft preview: no endpoint yet, so say so honestly instead of faking success. */
+        form.classList.add('is-sent');
+        msg.classList.remove('ok');
+        msg.textContent = kind === 'intro' ? 'Preview draft: this form is not connected yet, so your email was not saved. Here is the full introduction.' : 'Preview draft: this form is not connected yet, so nothing was sent. Please email info@psychologicalhealingcenter.com.';
+        if (kind === 'intro') unlockFull();
       }
     });
   });
@@ -396,8 +396,7 @@
         f.src = 'https://player.vimeo.com/video/1040984820?autoplay=1&title=0&byline=0&portrait=0&dnt=1';
         f.title = 'Healing Childhood Wounds: the full introduction';
         f.allow = 'autoplay; fullscreen; picture-in-picture';
-        f.setAttribute('allowfullscreen', '');
-        full.appendChild(f);
+                full.appendChild(f);
       }
       gate.hidden = true;
       frame.classList.remove('has-gate');
